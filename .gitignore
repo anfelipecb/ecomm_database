@@ -1,17 +1,4 @@
-# Environment
 .env
-.env.local
-.env.*.local
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
+.env.*
 .DS_Store
-Thumbs.db
-
-# Logs
 *.log
