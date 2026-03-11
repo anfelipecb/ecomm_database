@@ -60,7 +60,7 @@ pipeline {
             }
             steps {
                 echo "Deploy to ${env.PIPELINE_ENV} - placeholder for Kubernetes (Phase 5)"
-                echo "Image: ${IMAGE_NAME}:${env.IMAGE_TAG}"
+                echo "Full image: ${env.FULL_IMAGE}"
             }
         }
     }
