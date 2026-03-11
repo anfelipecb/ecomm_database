@@ -29,4 +29,3 @@ docker run -d --name ecomm-db -e POSTGRES_DB=ecommerce -e POSTGRES_PASSWORD=pass
 - **products** - Product catalog (id, name, price, description, created_at)
 - **orders** - Orders (id, product_id, quantity, total_price, status, created_at)
 
-Line to trigger the pipeline.
