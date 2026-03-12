@@ -1,0 +1,11 @@
+# ConfigMap for non-sensitive configuration
+# Services reference these via envFrom
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecomm-config
+  namespace: ecomm-dev
+data:
+  DB_HOST: "ecomm-database"
+  DB_NAME: "ecommerce"
+  PRODUCT_SERVICE_URL: "http://ecomm-product-service:3001"

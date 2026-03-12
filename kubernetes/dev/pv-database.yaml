@@ -1,0 +1,27 @@
+# PersistentVolume for database - data survives pod restarts
+# hostPath works with Minikube; path is on the Minikube node
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ecomm-db-pv-dev
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/ecomm-db-dev
+    type: DirectoryOrCreate
+---
+# PersistentVolumeClaim - database pod mounts this
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ecomm-db-pvc
+  namespace: ecomm-dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
