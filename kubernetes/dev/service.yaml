@@ -1,0 +1,13 @@
+# ClusterIP - internal communication (product/order services connect via this)
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomm-database
+  namespace: ecomm-dev
+spec:
+  selector:
+    app: ecomm-database
+  ports:
+    - port: 5432
+      targetPort: 5432
+  type: ClusterIP

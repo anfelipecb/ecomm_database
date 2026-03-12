@@ -59,8 +59,13 @@ pipeline {
                 expression { env.PIPELINE_ENV != 'build' }
             }
             steps {
-                echo "Deploy to ${env.PIPELINE_ENV} - placeholder for Kubernetes (Phase 5)"
-                echo "Full image: ${env.FULL_IMAGE}"
+                script {
+                    deployToK8s(
+                        'ecomm-database',
+                        'postgres',
+                        ['namespace.yaml', 'secret.yaml', 'configmap.yaml', 'pv-database.yaml', 'deployment.yaml', 'service.yaml']
+                    )
+                }
             }
         }
     }

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecomm-database
+  namespace: ecomm-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecomm-database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ecomm-database
+    spec:
+      containers:
+        - name: postgres
+          image: PLACEHOLDER_IMAGE
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: ecomm-db-secret
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: ecomm-db-pvc

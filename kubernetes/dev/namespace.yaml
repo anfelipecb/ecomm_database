@@ -1,0 +1,21 @@
+# Namespace for dev environment - creates logical separation
+# Apply this first; other resources reference namespace: ecomm-dev
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ecomm-dev
+  labels:
+    environment: dev
+---
+# Resource quota to prevent dev from consuming all cluster resources
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ecomm-dev-quota
+  namespace: ecomm-dev
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: "2Gi"
+    limits.cpu: "4"
+    limits.memory: "4Gi"
